@@ -4,23 +4,18 @@ require 'minesweeper'
 
 module Minesweeper
   module Console
-    class Main
+    class Game
       def initialize(size)
         @size = size
         @minefield = Minefield.new(size)
       end
 
       def start
+        #todo: pretty print the minefield
+        #todo: change prompt to show commands that can be used
         while command = Readline.readline('> ', true)
-          puts "You just typed: #{command}"
-          buffer = ''
-          @minefield.to_s.each_char do |cell_state|
-            buffer << cell_state
-            if buffer.size == @size
-              puts buffer
-              buffer = ''
-            end
-          end
+          #todo: validate command
+          #todo: update minefield with the command
         end
       end
 
