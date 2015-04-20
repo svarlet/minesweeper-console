@@ -1,0 +1,2 @@
+class EmptyMinefieldError < StandardError
+end
