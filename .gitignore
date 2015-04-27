@@ -16,3 +16,5 @@ mkmf.log
 .idea/
 .rakeTasks
 *.iml
+*.swp
+
