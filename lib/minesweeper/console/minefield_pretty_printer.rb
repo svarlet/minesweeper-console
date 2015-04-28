@@ -8,9 +8,20 @@ class MinefieldPrettyPrinter
   end
 
   def print
-    if (@minefield.to_s == "")
+    cell_sequence = @minefield.to_s
+	if (cell_sequence == "")
       raise EmptyMinefieldError
-    end
+	else
+	  result = ""
+	  result = print_column_indexes(Math::sqrt(cell_sequence.length).to_i)
+	end
   end
 
+  def print_column_indexes(biggest_index)
+	result = ""
+	biggest_index.times do |index|
+	  result = result + '|' + index.to_s 
+	end
+	result = result + '|'
+  end
 end

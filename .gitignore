@@ -16,6 +16,8 @@ mkmf.log
 .idea/
 .rakeTasks
 *.iml
+<<<<<<< HEAD
 tags
 gems.tags
+*.swp
 

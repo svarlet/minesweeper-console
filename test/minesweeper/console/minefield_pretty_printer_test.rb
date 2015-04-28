@@ -13,4 +13,10 @@ class MinefieldPrettyPrinterTest < Test::Unit::TestCase
     sut = MinefieldPrettyPrinter.new(EmptyMinefield.new())
     assert_raise(EmptyMinefieldError) { sut.print }
   end
+
+  def test_print_includes_a_column_header
+	a_minefield = Minesweeper::Minefield.new(4)
+	sut = MinefieldPrettyPrinter.new(a_minefield)
+	assert_equal('|0|1|2|3|', sut.print)
+  end
 end
