@@ -16,3 +16,6 @@ mkmf.log
 .idea/
 .rakeTasks
 *.iml
+tags
+gems.tags
+

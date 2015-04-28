@@ -29,3 +29,8 @@ guard :test do
   watch(%r{^lib/(.+)\.rb$}) { |m| "test/#{m[1]}_test.rb" }
 end
 
+
+guard 'ctags-bundler', :src_path => ["lib", "test"] do
+  watch(/^(lib|test)\/.*\.rb$/)
+  watch('Gemfile.lock')
+end
