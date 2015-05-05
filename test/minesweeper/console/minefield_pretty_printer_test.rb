@@ -16,15 +16,20 @@ class MinefieldPrettyPrinterTest < Test::Unit::TestCase
 
   def test_print_makes_room_in_the_columns_header_for_the_rows_header
     sut = MinefieldPrettyPrinter.new(create_minefield_of_size(4))
-    assert_match(/^ \|.*/, sut.print)
+    assert_match(/^ \|.*/, sut.print_column_headers)
   end
 
   def test_print_includes_a_column_header
     sut = MinefieldPrettyPrinter.new(create_minefield_of_size(4))
-    assert_equal(' |0|1|2|3|', sut.print)
+    assert_equal(' |0|1|2|3|', sut.print.lines[0])
   end
 
   def create_minefield_of_size(a_size)
     Minesweeper::Minefield.new(a_size)
+  end
+
+  def test_print_line_includes_a_row_header
+    sut = MinefieldPrettyPrinter.new(create_minefield_of_size(4))
+    assert_match(/^0\|.*$/, sut.print_line(0))
   end
 end

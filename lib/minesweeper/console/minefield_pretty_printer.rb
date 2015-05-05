@@ -12,16 +12,20 @@ class MinefieldPrettyPrinter
     if (cell_sequence == "")
       raise EmptyMinefieldError
     else
-      result = ""
-      result = print_column_indexes(Math::sqrt(cell_sequence.length).to_i)
+      result = print_column_headers()
     end
   end
 
-  def print_column_indexes(nb_columns)
+  def print_column_headers()
     result = " |"
-    nb_columns.times do |index|
+    @minefield.size.times do |index|
       result << index.to_s + '|' 
     end
     result
+  end
+
+  def print_line(index)
+    raise StandardError if index >= @minefield.size
+    line = index.to_s + '|'
   end
 end
