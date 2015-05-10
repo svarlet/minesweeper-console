@@ -12,20 +12,27 @@ class MinefieldPrettyPrinter
     if (cell_sequence == "")
       raise EmptyMinefieldError
     else
-      result = print_column_headers()
+      size = Math::sqrt(cell_sequence.length).to_i
+      result = print_column_headers(size) + '\n'
+      rows = cell_sequence.scan(/\w{#{size}}/)
+      rows.each_with_index do |row, index|
+        result << print_row(index, row) + '\n'
+      end
+      result
     end
   end
 
-  def print_column_headers()
+  def print_column_headers(nb_columns)
     result = " |"
-    @minefield.size.times do |index|
+    nb_columns.times do |index|
       result << index.to_s + '|' 
     end
     result
   end
 
-  def print_line(index)
-    raise StandardError if index >= @minefield.size
-    line = index.to_s + '|'
+  def print_row(row_index, a_raw_row)
+    result = "#{row_index}|"
+    a_raw_row.each_char { |c| result << "#{c}|" }
+    result
   end
 end
