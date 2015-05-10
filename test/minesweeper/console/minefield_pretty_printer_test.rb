@@ -23,7 +23,7 @@ class MinefieldPrettyPrinterTest < Test::Unit::TestCase
 
   def test_when_minefield_size_is_N_prints_N_plus_1_columns
     printer = MinefieldPrettyPrinter.new(create_minefield_of_size(4))
-    printer.print.lines('\n') do |row| 
+    printer.print.each_line('\n') do |row| 
       assert_no_match(/\|\|/, row)
       assert_equal(5, row.count('|'))
     end
