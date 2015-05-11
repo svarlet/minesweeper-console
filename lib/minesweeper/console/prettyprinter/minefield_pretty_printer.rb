@@ -1,11 +1,9 @@
-require 'minesweeper'
-require_relative 'empty_minefield_error'
-
 module Minesweeper
   module Console
     module PrettyPrinter
       class MinefieldPrettyPrinter
-        def initialize
+        def initialize(a_minefield)
+          raise StandardError if a_minefield.nil?
         end
 
         def print
