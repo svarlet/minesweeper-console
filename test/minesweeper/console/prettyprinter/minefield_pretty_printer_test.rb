@@ -10,6 +10,7 @@ module Minesweeper
         end
 
         def test_output
+          assert_equal(' |0|1|\n0|1|2|\n1|H|F|\n', MinefieldPrettyPrinter.new('12HF').print)
           assert_equal(' |0|1|2|3|\n0|A|A|A|A|\n1|B|B|B|B|\n2|C|C|C|C|\n3|D|D|D|D|\n', MinefieldPrettyPrinter.new('AAAABBBBCCCCDDDD').print)
         end
       end
