@@ -8,8 +8,7 @@ module Minesweeper
         end
 
         def print(number_of_columns)
-          raise StandardError if number_of_columns == 0
-          raise StandardError if number_of_columns < 0
+          raise StandardError if number_of_columns <= 0
           column_width = compute_column_width_for(number_of_columns)
           result = ' ' * column_width + @separator
           number_of_columns.times do |i|
