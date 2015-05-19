@@ -24,6 +24,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "guard"
   spec.add_development_dependency "guard-test"
   spec.add_development_dependency "guard-ctags-bundler"
+  spec.add_development_dependency "byebug"
 
   spec.add_runtime_dependency "minesweeper", "~> 0.0.2"
 end
