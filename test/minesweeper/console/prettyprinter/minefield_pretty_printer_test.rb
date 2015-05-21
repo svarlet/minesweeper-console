@@ -10,8 +10,26 @@ module Minesweeper
         end
 
         def test_output
-          assert_equal(' |0|1|\n0|1|2|\n1|H|F|\n', MinefieldPrettyPrinter.new('12HF').print)
-          assert_equal(' |0|1|2|3|\n0|A|A|A|A|\n1|B|B|B|B|\n2|C|C|C|C|\n3|D|D|D|D|\n', MinefieldPrettyPrinter.new('AAAABBBBCCCCDDDD').print)
+          verify_printing_of(" |0|1|\n0|1|2|\n1|H|F|\n", '12HF')
+          verify_printing_of(" |0|1|2|3|\n0|A|A|A|A|\n1|B|B|B|B|\n2|C|C|C|C|\n3|D|D|D|D|\n", 'AAAABBBBCCCCDDDD')
+        end
+
+        def verify_printing_of(expected, str_representation)
+          assert_equal(expected, MinefieldPrettyPrinter.new(MinefieldMock.new(str_representation)).print)
+        end
+      end
+
+      class MinefieldMock
+        def initialize(string_representation)
+          @string_representation = string_representation
+        end
+
+        def to_s
+          @string_representation
+        end
+
+        def size
+          Math.sqrt(@string_representation.length).to_i
         end
       end
     end

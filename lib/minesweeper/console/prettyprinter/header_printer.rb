@@ -18,7 +18,7 @@ module Minesweeper
           end
           result
         end
-        
+
         def compute_column_width_for(number_of_columns)
           (number_of_columns - 1).to_s.length
         end

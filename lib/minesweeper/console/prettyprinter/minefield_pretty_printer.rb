@@ -15,19 +15,19 @@ module Minesweeper
 
         def print
           cells = @minefield.to_s
-          nb_columns = Math.sqrt(@minefield.size).to_i
+          nb_columns = @minefield.size
           result = generate_header(nb_columns) + generate_rows(cells, nb_columns)
         end
 
         def generate_header(nb_columns)
-          @header_printer.print(nb_columns) + '\n'
+          @header_printer.print(nb_columns) + "\n"
         end
 
         def generate_rows(cells, nb_columns)
           max_column_width = (nb_columns - 1).to_s.length
           result = ''
           split_string_in_chunks(cells, nb_columns).each_with_index do |row, i|
-            result << @row_printer.print(i, row, max_column_width) + '\n'
+            result << @row_printer.print(i, row, max_column_width) + "\n"
           end
           result
         end
