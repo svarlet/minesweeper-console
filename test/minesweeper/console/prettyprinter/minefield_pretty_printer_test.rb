@@ -28,7 +28,7 @@ module Minesweeper
           @string_representation
         end
 
-        def size
+        def row_count
           Math.sqrt(@string_representation.length).to_i
         end
       end
