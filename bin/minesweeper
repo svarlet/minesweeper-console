@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require 'minesweeper/console'
+
+args = ARGV.dup
+begin
+  row_count = args.shift.strip.to_i
+rescue
+  puts "This command requires one argument to set the size of the minefield."
+end
+
+Minesweeper::Console::Game.new(row_count).start
+
