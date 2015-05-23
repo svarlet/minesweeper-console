@@ -9,5 +9,5 @@ rescue
   puts "This command requires one argument to set the size of the minefield."
 end
 
-Minesweeper::Console::Game.new(row_count).start
+Minesweeper::Console::GameLoop.new(row_count).start
 
