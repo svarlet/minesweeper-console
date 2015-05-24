@@ -11,7 +11,7 @@ module Minesweeper
 
         def test_execute_does_nothing
           assert_nothing_raised(StandardError) { NullCommand.new(nil).execute }
-          end
+        end
       end
     end
   end

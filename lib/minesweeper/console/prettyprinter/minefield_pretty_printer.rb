@@ -16,7 +16,7 @@ module Minesweeper
         def print
           cells = @minefield.to_s
           nb_columns = @minefield.row_count
-          result = generate_header(nb_columns) + generate_rows(cells, nb_columns)
+          generate_header(nb_columns) + generate_rows(cells, nb_columns)
         end
 
         def generate_header(nb_columns)
