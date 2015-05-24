@@ -10,6 +10,7 @@ module Minesweeper
           assert_raise(ArgumentError) { UnflagCommand.new }
           assert_raise(ArgumentError) { UnflagCommand.new(nil) }
           assert_raise(ArgumentError) { UnflagCommand.new(nil, 0) }
+          assert_raise(ArgumentError) { UnflagCommand.new(nil, '4', '19') }
           assert_nothing_raised { UnflagCommand.new(nil, 0, 0) }
         end
 
