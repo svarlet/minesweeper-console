@@ -3,7 +3,7 @@ require_relative 'unsupported_command_error'
 require_relative 'null_command'
 require_relative 'reveal_command'
 require_relative 'flag_command'
-# require_relative 'unflag_command'
+require_relative 'unflag_command'
 
 module Minesweeper
   module Console
@@ -22,11 +22,11 @@ module Minesweeper
           tokens = user_input.split(/\s+/)
           case tokens[0].upcase
           when 'R', 'REVEAL'
-            RevealCommand.new(@minefield, *tokens[1,2])
+            RevealCommand.new(@minefield, *tokens[1,2].map(&:to_i))
           when 'F', 'FLAG'
-            FlagCommand.new(@minefield, *tokens[1,2])
+            FlagCommand.new(@minefield, *tokens[1,2].map(&:to_i))
           when 'U', 'UNFLAG'
-            UnflagCommand.new(@minefield, *tokens[1,2])
+            UnflagCommand.new(@minefield, *tokens[1,2].map(&:to_i))
           end
         end
 
