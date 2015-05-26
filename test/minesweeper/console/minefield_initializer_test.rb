@@ -1,32 +1,58 @@
 require_relative '../../test_helper'
 require 'minesweeper/console/minefield_initializer'
+require 'minesweeper/minefield'
 
 module Minesweeper
   module Console
     class MinefieldInitializerTest < Test::Unit::TestCase
       def test_is_initializable
-        MinefieldInitializer.new
+        assert_raise(ArgumentError) { MinefieldInitializer.new(nil) }
+        assert_nothing_raised(StandardError) { MinefieldInitializer.new(Minesweeper::Minefield.new(1)) }
       end
 
-      def test_generate_one_mine_should_return_an_array_of_2_integers_within_an_array
-        mines = MinefieldInitializer.new.generate(1)
+      def test_generate_raises_an_ArgumentError_if_desired_quantity_of_mines_exceeds_minefield_size
+        a_minefield = Minesweeper::Minefield.new(1)
+        sut = MinefieldInitializer.new(a_minefield)
+        assert_raise(ArgumentError) { sut.generate(2) }
+      end
+
+      def test_generate_one_mine_should_return_an_array_of_length_1
+        a_minefield = Minesweeper::Minefield.new(1)
+        sut = MinefieldInitializer.new(a_minefield)
+        mines = sut.generate(1)
         assert_equal(1, mines.length)
-        assert_equal(2, mines[0].length)
-        assert_true(mines.pop.all? { |item| item.is_a? Integer })
       end
 
-      def test_generate_many_mines_should_return_an_array_of_2_integers_per_mine_within_an_array
-        mines = MinefieldInitializer.new.generate(2)
-        assert_equal(2, mines.length)
-        coords_validator = ->(coords) { coords[0].is_a?(Integer) && coords[1].is_a?(Integer) }
-        # MUST CHECK THAT EACH COORD IS LENGTH = 2 !!!!!
-        assert_true(mines.all?(&coords_validator)
+      def test_generate_20_mines_should_return_an_array_of_length_20
+        a_minefield = Minesweeper::Minefield.new(5)
+        sut = MinefieldInitializer.new(a_minefield)
+        mines = sut.generate(20)
+        assert_equal(20, mines.length)
       end
 
-      def test_generate_should_generate_the_specified_quantity_of_mines
-        omit('not ready yet')
-        coords = MinefieldInitializer.new.generate(3)
-        assert_equal(3, coords.length)
+      def test_each_mine_should_be_an_array_containing_2_integers
+        a_minefield = Minesweeper::Minefield.new(2)
+        sut = MinefieldInitializer.new(a_minefield)
+        mines = sut.generate(2)
+        mines.each do |coords|
+          assert_equal(2, coords.length)
+          assert_true(coords.all? { |c| c.is_a?(Integer) } )
+        end
+      end
+
+      def test_each_mine_has_unique_coordinates
+        a_minefield = Minesweeper::Minefield.new(2)
+        sut = MinefieldInitializer.new(a_minefield)
+        mines = sut.generate(2)
+        assert_true(mines & mines == mines)
+      end
+
+      def test_when_generate_is_executed_twice_then_both_results_dont_match
+        a_minefield = Minesweeper::Minefield.new(2)
+        sut = MinefieldInitializer.new(a_minefield)
+        some_mines = sut.generate(2)
+        other_mines = sut.generate(2)
+        assert_not_equal(some_mines, other_mines)
       end
     end
   end
