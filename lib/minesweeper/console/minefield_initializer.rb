@@ -9,9 +9,17 @@ module Minesweeper
       end
 
       def generate(quantity_of_mines)
-        raise ArgumentError, 'The specified quantity must be an integer.' unless quantity_of_mines.is_a?(Integer)
-        raise ArgumentError, 'The specified quantity exceeds the minefield size.' if quantity_of_mines > @minefield.size * @minefield.size
-        Array.new(quantity_of_mines) { |i| [i, 0] }
+        unless quantity_of_mines.is_a?(Integer)
+          raise ArgumentError, 'The specified quantity must be an integer.'
+        end
+
+        if quantity_of_mines > @minefield.size * @minefield.size
+          raise ArgumentError, 'The specified quantity exceeds the minefield size.'
+        end
+
+        mines = []
+        quantity_of_mines.times { mines << [rand(@minefield.size), rand(@minefield.size)] }
+        mines
       end
     end
   end
