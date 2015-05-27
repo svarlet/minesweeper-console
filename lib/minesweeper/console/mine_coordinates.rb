@@ -14,6 +14,11 @@ module Minesweeper
           self.row_index == an_object.row_index &&
           self.col_index == an_object.col_index
       end
+      alias eql? :==
+
+      def hash
+        [@row_index, @col_index].hash
+      end
     end
   end
 end
