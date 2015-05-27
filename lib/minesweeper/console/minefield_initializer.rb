@@ -18,7 +18,17 @@ module Minesweeper
         end
 
         mines = []
-        quantity_of_mines.times { mines << [rand(@minefield.size), rand(@minefield.size)] }
+        quantity_of_mines.times do
+          loop do
+            a_mine = [rand(@minefield.size), rand(@minefield.size)]
+            if mines.include?(a_mine)
+              next
+            else
+              mines << a_mine
+              break
+            end
+          end
+        end
         mines
       end
     end

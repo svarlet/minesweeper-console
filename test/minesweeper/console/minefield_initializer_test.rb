@@ -47,13 +47,7 @@ module Minesweeper
         assert_true(mines & mines == mines)
       end
 
-      def test_when_generate_is_executed_twice_then_both_results_dont_match
-        a_minefield = Minesweeper::Minefield.new(2)
-        sut = MinefieldInitializer.new(a_minefield)
-        some_mines = sut.generate(2)
-        other_mines = sut.generate(2)
-        assert_not_equal(some_mines, other_mines)
-      end
+
     end
   end
 end
