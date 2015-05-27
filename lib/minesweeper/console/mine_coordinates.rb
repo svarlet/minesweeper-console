@@ -4,7 +4,7 @@ module Minesweeper
       attr_reader :row_index, :col_index
 
       def initialize(row_index, col_index)
-        raise ArgumentError unless row_index.is_a?(Integer) && col_index.is_a?(Integer)
+        raise ArgumentError, "Integers required, got #{row_index} #{col_index}." unless row_index.is_a?(Integer) && col_index.is_a?(Integer)
         @row_index = row_index
         @col_index = col_index
       end
