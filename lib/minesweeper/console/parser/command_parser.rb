@@ -1,4 +1,4 @@
-require_relative 'invalid_command_parameters'
+require_relative 'invalid_command_parameters_error'
 require_relative 'unsupported_command_error'
 require_relative 'null_command'
 require_relative 'reveal_command'
@@ -35,7 +35,7 @@ module Minesweeper
             raise UnsupportedCommandError, 'Supported commands are r,u,f,R,U,F.'
           end
           if user_input !~ /^.*\d+ \d+$/
-            raise InvalidCommandParameters, 'A command must be followed by two integers.'
+            raise InvalidCommandParametersError, 'A command must be followed by two integers.'
           end
         end
 

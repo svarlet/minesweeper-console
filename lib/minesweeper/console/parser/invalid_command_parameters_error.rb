@@ -1,7 +1,7 @@
 module Minesweeper
   module Console
     module Parser
-      class InvalidCommandParameters < StandardError
+      class InvalidCommandParametersError < StandardError
       end
     end
   end
