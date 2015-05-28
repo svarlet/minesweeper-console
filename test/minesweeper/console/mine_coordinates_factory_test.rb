@@ -1,5 +1,5 @@
 require_relative '../../test_helper'
-require 'minesweeper/console/mine_coordinate_factory'
+require 'minesweeper/console/mine_coordinates_factory'
 require 'minesweeper/console/mine_coordinates'
 require 'byebug'
 
