@@ -48,6 +48,18 @@ module Minesweeper
         @sut.lay 2
         assert_generated_mines_were_laid(2)
       end
+
+      def test_lay_should_never_lay_2_mine_at_the_same_coordinates
+        a_mine = MineCoordinates.new(1, 1)
+        same_mine = MineCoordinates.new(1, 1)
+        different_mine = MineCoordinates.new(1, 2)
+        dummy_mine_generator = DummyMineGenerator.new([a_mine, same_mine, different_mine])
+        sut = MineLayer.new(@minefield, dummy_mine_generator)
+
+        sut.lay(2)
+
+        assert_equal(@minefield, [a_mine, different_mine])
+      end
     end
 
     class MinefieldSpy
@@ -79,6 +91,16 @@ module Minesweeper
         a_mine = super(max)
         @generated_mines << a_mine
         a_mine
+      end
+    end
+
+    class DummyMineGenerator < MineCoordinatesFactory
+      def initialize(preconstructed_mines)
+        @preconstructed_mines = preconstructed_mines
+      end
+
+      def create(max)
+        @preconstructed_mines.shift
       end
     end
   end

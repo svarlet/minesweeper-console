@@ -1,6 +1,8 @@
 module Minesweeper
   module Console
     class MineCoordinates
+      include Comparable
+
       attr_reader :row_index, :col_index
 
       def initialize(row_index, col_index)
@@ -9,11 +11,16 @@ module Minesweeper
         @col_index = col_index
       end
 
-      def ==(an_object)
-        self.class == an_object.class &&
-          self.row_index == an_object.row_index &&
-          self.col_index == an_object.col_index
+      def <=>(another)
+        if @row_index < another.row_index
+          1
+        else if @row_index > another.row_index
+          -1
+        else
+          @col_index <=> another.col_index
+        end
       end
+
       alias eql? :==
 
       def hash

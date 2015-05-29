@@ -33,6 +33,10 @@ module Minesweeper
         b = MineCoordinates.new(0, 0)
         assert_equal(a, b)
       end
+
+      def test_is_comparable
+        assert_respond_to(:<=>, MineCoordinates.new(0,0))
+      end
     end
   end
 end

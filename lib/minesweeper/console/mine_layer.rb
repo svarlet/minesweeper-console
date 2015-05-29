@@ -12,9 +12,18 @@ module Minesweeper
       end
 
       def lay(quantity)
+        laid_mines = []
         quantity.times do
-          coords = @generator.create(@minefield.row_count)
-          @minefield.hide_mine_at(coords.row_index, coords.col_index)
+          loop do
+            coords = @generator.create(@minefield.row_count)
+            if laid_mines.include?(coords)
+              next
+            else
+              laid_mines << coords
+              @minefield.hide_mine_at(coords.row_index, coords.col_index)
+              break
+            end
+          end
         end
       end
     end
