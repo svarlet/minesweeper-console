@@ -58,7 +58,7 @@ module Minesweeper
 
         sut.lay(2)
 
-        assert_equal(@minefield, [a_mine, different_mine])
+        assert_equal(@minefield.mines_laid, [a_mine, different_mine])
       end
     end
 

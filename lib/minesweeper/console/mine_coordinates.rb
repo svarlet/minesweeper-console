@@ -11,16 +11,11 @@ module Minesweeper
         @col_index = col_index
       end
 
-      def <=>(another)
-        if @row_index < another.row_index
-          1
-        else if @row_index > another.row_index
-          -1
-        else
-          @col_index <=> another.col_index
-        end
+      def ==(other)
+        self.class == other.class &&
+          self.row_index == other.row_index &&
+          self.col_index == other.col_index
       end
-
       alias eql? :==
 
       def hash
