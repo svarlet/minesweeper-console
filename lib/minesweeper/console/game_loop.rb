@@ -1,6 +1,7 @@
 require 'readline'
 require 'minesweeper'
 require_relative 'prettyprinter/minefield_pretty_printer'
+require_relative 'prettyprinter/theme/default_theme'
 require_relative 'parser/command_parser'
 require_relative 'mine_layer'
 require_relative 'mine_coordinates_factory'
@@ -12,7 +13,7 @@ module Minesweeper
       def initialize(size)
         @row_count = size
         @minefield = Minefield.new(@row_count)
-        @pretty_printer = Console::PrettyPrinter::MinefieldPrettyPrinter.new(@minefield)
+        @pretty_printer = Console::PrettyPrinter::MinefieldPrettyPrinter.new(@minefield, Console::PrettyPrinter::Theme::DefaultTheme.new(Rainbow.new))
         @command_parser = Console::Parser::CommandParser.new(@minefield)
         mine_generator = MineCoordinatesFactory.new(Random.new)
         @mine_layer = MineLayer.new(@minefield, mine_generator)

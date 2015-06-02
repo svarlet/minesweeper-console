@@ -1,4 +1,5 @@
 require 'minesweeper/console/prettyprinter/minefield_pretty_printer'
+require 'minesweeper/console/prettyprinter/theme/null_theme'
 require_relative '../../../test_helper'
 
 module Minesweeper
@@ -15,7 +16,10 @@ module Minesweeper
         end
 
         def verify_printing_of(expected, str_representation)
-          assert_equal(expected, MinefieldPrettyPrinter.new(MinefieldMock.new(str_representation)).print)
+          minefield = MinefieldMock.new(str_representation)
+          theme = Theme::NullTheme.new
+          printer = MinefieldPrettyPrinter.new(minefield, theme)
+          assert_equal(expected, printer.print)
         end
       end
 

@@ -5,16 +5,19 @@ module Minesweeper
         def initialize(separator, theme)
           raise ArgumentError if separator.nil? || theme.nil?
           @separator = separator
+          @theme = theme
         end
 
         def print(number_of_columns)
           raise ArgumentError if number_of_columns <= 0
           column_width = compute_column_width_for(number_of_columns)
-          result = ' ' * column_width + @separator
+          result = ' ' * column_width
+          result << @theme.colorize_separator(@separator)
           number_of_columns.times do |i|
-            column_header = i.to_s
-            column_header.prepend(' ' * (column_width - column_header.length))
-            result << column_header + @separator
+            column_header = @theme.colorize_header(i.to_s)
+            column_header.prepend(' ' * (column_width - i.to_s.length))
+            result << column_header
+            result << @theme.colorize_separator(@separator)
           end
           result
         end
