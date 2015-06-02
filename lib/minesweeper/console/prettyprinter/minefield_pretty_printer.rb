@@ -1,6 +1,8 @@
 require 'minesweeper'
+require 'rainbow'
 require_relative 'header_printer'
 require_relative 'row_printer'
+require_relative 'theme/default_theme'
 
 module Minesweeper
   module Console
@@ -9,8 +11,9 @@ module Minesweeper
         def initialize(a_minefield)
           raise StandardError if a_minefield.nil?
           @minefield = a_minefield
-          @header_printer = HeaderPrinter.new('|')
-          @row_printer = RowPrinter.new('|')
+          @theme = Theme::DefaultTheme.new(Rainbow.new)
+          @header_printer = HeaderPrinter.new('|', @theme)
+          @row_printer = RowPrinter.new('|', @theme)
         end
 
         def print

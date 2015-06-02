@@ -2,8 +2,8 @@ module Minesweeper
   module Console
     module PrettyPrinter
       class RowPrinter
-        def initialize(separator)
-          raise StandardError if separator.nil?
+        def initialize(separator, theme)
+          raise StandardError if separator.nil? || theme.nil?
           @separator = separator
         end
 

@@ -1,5 +1,6 @@
 require  'minesweeper/console/prettyprinter/header_printer'
 require_relative '../../../test_helper'
+require 'minesweeper/console/prettyprinter/theme/null_theme'
 
 module Minesweeper
   module Console
@@ -8,11 +9,15 @@ module Minesweeper
         SEP = '§'
 
         def setup
-          @printer = HeaderPrinter.new(SEP)
+          @printer = HeaderPrinter.new(SEP, Theme::NullTheme.new)
         end
 
         def test_raises_error_when_initialized_with_nil_separator
-          assert_raise(StandardError) { HeaderPrinter.new(nil) }
+          assert_raise(StandardError) { HeaderPrinter.new(nil, Theme::NullTheme.new) }
+        end
+        
+        def test_raises_error_when_initialized_with_nil_theme
+          assert_raise(StandardError) { HeaderPrinter.new('.', nil) }
         end
 
         def test_raises_error_when_number_of_columns_is_zero

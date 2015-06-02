@@ -1,5 +1,6 @@
 require 'minesweeper/console/prettyprinter/row_printer'
 require_relative '../../../test_helper'
+require 'minesweeper/console/prettyprinter/theme/null_theme'
 
 module Minesweeper
   module Console
@@ -8,13 +9,16 @@ module Minesweeper
         SEP = '§'
 
         def setup
-          @printer = RowPrinter.new(SEP)
+          @printer = RowPrinter.new(SEP, Theme::NullTheme.new)
         end
 
         def test_raise_error_when_initialized_with_a_nil_separator
-          assert_raise(StandardError) { RowPrinter.new(nil) }
+          assert_raise(StandardError) { RowPrinter.new(nil, Theme::NullTheme.new) }
         end
 
+        def test_raise_error_when_initialized_with_a_nil_theme
+          assert_raise(StandardError) { RowPrinter.new('.', nil) }
+        end
         def test_print_raises_error_when_column_width_is_nil
           assert_raise(StandardError) { @printer.print(0, 'XYZ', nil) }
         end
