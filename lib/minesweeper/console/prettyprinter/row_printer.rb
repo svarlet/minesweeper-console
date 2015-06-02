@@ -3,14 +3,14 @@ module Minesweeper
     module PrettyPrinter
       class RowPrinter
         def initialize(separator, theme)
-          raise StandardError if separator.nil? || theme.nil?
+          raise ArgumentError if separator.nil? || theme.nil?
           @separator = separator
         end
 
         def print(row_number, raw_row, column_width)
-          raise StandardError if column_width.nil?
-          raise StandardError if column_width < 1
-          raise StandardError if column_width < row_number.to_s.length
+          raise ArgumentError if column_width.nil?
+          raise ArgumentError if column_width < 1
+          raise ArgumentError if column_width < row_number.to_s.length
           result = prepend_spaces_to(row_number.to_s, column_width) + @separator
           raw_row.each_char do |c|
             result << prepend_spaces_to(c, column_width) + @separator

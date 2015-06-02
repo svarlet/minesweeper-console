@@ -9,7 +9,7 @@ module Minesweeper
     module PrettyPrinter
       class MinefieldPrettyPrinter
         def initialize(a_minefield)
-          raise StandardError if a_minefield.nil?
+          raise ArgumentError if a_minefield.nil?
           @minefield = a_minefield
           @theme = Theme::DefaultTheme.new(Rainbow.new)
           @header_printer = HeaderPrinter.new('|', @theme)

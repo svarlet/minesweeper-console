@@ -13,19 +13,19 @@ module Minesweeper
         end
 
         def test_raises_error_when_initialized_with_nil_separator
-          assert_raise(StandardError) { HeaderPrinter.new(nil, Theme::NullTheme.new) }
+          assert_raise(ArgumentError) { HeaderPrinter.new(nil, Theme::NullTheme.new) }
         end
-        
+
         def test_raises_error_when_initialized_with_nil_theme
-          assert_raise(StandardError) { HeaderPrinter.new('.', nil) }
+          assert_raise(ArgumentError) { HeaderPrinter.new('.', nil) }
         end
 
         def test_raises_error_when_number_of_columns_is_zero
-          assert_raise(StandardError) { @printer.print(0) }
+          assert_raise(ArgumentError) { @printer.print(0) }
         end
 
         def test_raises_error_when_number_of_columns_is_negative
-          assert_raise(StandardError) { @printer.print(-1) }
+          assert_raise(ArgumentError) { @printer.print(-1) }
         end
 
         def test_makes_room_for_the_greatest_row_number

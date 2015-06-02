@@ -6,7 +6,7 @@ module Minesweeper
     module PrettyPrinter
       class MinefieldPrettyPrinterTest < Test::Unit::TestCase
         def test_raises_error_when_initialized_with_a_nil_minefield
-          assert_raise(StandardError) { MinefieldPrettyPrinter.new(nil) }
+          assert_raise(ArgumentError) { MinefieldPrettyPrinter.new(nil) }
         end
 
         def test_output

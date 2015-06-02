@@ -13,23 +13,23 @@ module Minesweeper
         end
 
         def test_raise_error_when_initialized_with_a_nil_separator
-          assert_raise(StandardError) { RowPrinter.new(nil, Theme::NullTheme.new) }
+          assert_raise(ArgumentError) { RowPrinter.new(nil, Theme::NullTheme.new) }
         end
 
         def test_raise_error_when_initialized_with_a_nil_theme
-          assert_raise(StandardError) { RowPrinter.new('.', nil) }
+          assert_raise(ArgumentError) { RowPrinter.new('.', nil) }
         end
         def test_print_raises_error_when_column_width_is_nil
-          assert_raise(StandardError) { @printer.print(0, 'XYZ', nil) }
+          assert_raise(ArgumentError) { @printer.print(0, 'XYZ', nil) }
         end
 
         def test_print_raises_error_when_columns_width_is_not_strictly_positive
-          assert_raise(StandardError) { @printer.print(0, 'XYZ', 0) }
-          assert_raise(StandardError) { @printer.print(0, 'XYZ', -1) }
+          assert_raise(ArgumentError) { @printer.print(0, 'XYZ', 0) }
+          assert_raise(ArgumentError) { @printer.print(0, 'XYZ', -1) }
         end
 
         def test_print_raises_error_when_desired_column_width_is_smaller_than_row_number
-          assert_raise(StandardError) { @printer.print(10, 'XYZ', 1) }
+          assert_raise(ArgumentError) { @printer.print(10, 'XYZ', 1) }
         end
 
         def test_prints_row_number_first
