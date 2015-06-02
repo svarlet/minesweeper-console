@@ -7,7 +7,8 @@ module Minesweeper
           @separator = separator
           @theme = theme
         end
-
+        #TODO: Extract padding and colorization from the
+        #responsibilities of this class by using a composition of decorators.
         def print(number_of_columns)
           raise ArgumentError if number_of_columns <= 0
           column_width = compute_column_width_for(number_of_columns)

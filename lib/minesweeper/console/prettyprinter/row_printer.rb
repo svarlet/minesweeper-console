@@ -8,6 +8,8 @@ module Minesweeper
           @theme = theme
         end
 
+        #TODO: Extract padding and colorization from the
+        #responsibilities of this class by using a composition of decorators.
         def print(row_number, raw_row, column_width)
           raise ArgumentError if column_width.nil?
           raise ArgumentError if column_width < 1
