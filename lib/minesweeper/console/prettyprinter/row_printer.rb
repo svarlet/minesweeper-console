@@ -14,24 +14,27 @@ module Minesweeper
           raise ArgumentError if column_width.nil?
           raise ArgumentError if column_width < 1
           raise ArgumentError if column_width < row_number.to_s.length
-          colorized_row_number = @theme.colorize_header(row_number.to_s)
-          result = ' ' * (column_width - row_number.to_s.length) + colorized_row_number 
-          result << @theme.colorize_separator(@separator)
+          result = build_row_header(row_number, column_width)
           raw_row.each_char do |c|
-            result << ' ' * (column_width - c.length)
+            result << left_padding_for(c, column_width)
             if (c =~ /\d+/)
-              result << @theme.colorize_mine_quantity(result)
+              result << @theme.colorize_mine_quantity(c)
             else
-              result << @theme.colorize_cell_status(result)
+              result << @theme.colorize_cell_status(c)
             end
             result << @theme.colorize_separator(@separator)
           end
           result
         end
 
-        def prepend_spaces_to(a_string, desired_length)
-          missing_spaces = desired_length - a_string.length
-          ' ' * missing_spaces + a_string
+        def build_row_header(row_number, desired_length)
+          result = left_padding_for(row_number.to_s, desired_length)
+          result << colorized_row_number = @theme.colorize_header(row_number.to_s)
+          result << @theme.colorize_separator(@separator)
+        end
+
+        def left_padding_for(string, desired_length)
+          ' ' * (desired_length - string.length)
         end
       end
     end
