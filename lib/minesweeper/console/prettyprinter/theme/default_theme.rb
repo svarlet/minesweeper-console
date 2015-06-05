@@ -16,7 +16,11 @@ module Minesweeper
           end
 
           def colorize_mine_quantity(a_string)
-            @colorizer.wrap(a_string).red
+            if (a_string == '0')
+              ' '
+            else
+              @colorizer.wrap(a_string).red
+            end
           end
 
           def colorize_cell_status(a_string)
