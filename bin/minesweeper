@@ -9,5 +9,9 @@ rescue
   puts "This command requires one argument to set the size of the minefield."
 end
 
+trap('INT') do
+  puts 'Bye bye !'
+  exit
+end
 Minesweeper::Console::GameLoop.new(row_count).start
 
