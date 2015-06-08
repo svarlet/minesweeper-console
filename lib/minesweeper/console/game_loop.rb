@@ -5,6 +5,8 @@ require_relative 'prettyprinter/theme/default_theme'
 require_relative 'parser/command_parser'
 require_relative 'mine_layer'
 require_relative 'mine_coordinates_factory'
+require_relative 'parser/unsupported_command_error'
+require_relative 'parser/invalid_command_parameters_error'
 
 module Minesweeper
   module Console
@@ -22,9 +24,16 @@ module Minesweeper
       def start
         @mine_layer.lay(@row_count)
         loop do
+          begin
           puts @pretty_printer.print
           user_input = Readline.readline(PROMPT, true)
           @command_parser.parse(user_input).execute
+          rescue Parser::UnsupportedCommandError, Parser::InvalidCommandParametersError => e
+            puts e.message
+          rescue Minesweeper::Explosives::ExplosionError => e
+            puts e.message
+            exit
+          end
         end
       end
 
