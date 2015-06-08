@@ -27,7 +27,7 @@ module Minesweeper
 
         def build_row_header(row_number, desired_length)
           result = left_padding_for(row_number.to_s, desired_length)
-          result << colorized_row_number = @theme.colorize_header(row_number.to_s)
+          result << @theme.colorize_header(row_number.to_s)
           result << @theme.colorize_separator(@separator)
         end
 
