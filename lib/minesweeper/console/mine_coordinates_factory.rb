@@ -4,7 +4,6 @@ module Minesweeper
   module Console
     class MineCoordinatesFactory
       def initialize(random_number_generator)
-        raise ArgumentError unless random_number_generator.respond_to? :rand
         @rng = random_number_generator
       end
 

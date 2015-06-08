@@ -6,12 +6,6 @@ require 'byebug'
 module Minesweeper
   module Console
     class MineCoordinatesFactoryTest < Test::Unit::TestCase
-      def test_initialize_takes_a_random_number_generator
-        not_a_rng = Object.new
-        assert_raise(ArgumentError) { MineCoordinatesFactory.new(not_a_rng) }
-        assert_nothing_raised { MineCoordinatesFactory.new(Random.new) }
-      end
-
       def test_create_should_return_a_pair_of_mine_coordinates
         sut = MineCoordinatesFactory.new(Random.new)
         mc = sut.create(1)

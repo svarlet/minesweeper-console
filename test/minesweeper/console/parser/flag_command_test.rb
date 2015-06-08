@@ -7,10 +7,6 @@ module Minesweeper
     module Parser
       class FlagCommandTest < Test::Unit::TestCase
         def test_initialize_requires_a_minefield_and_2_coordinates
-          assert_raise(ArgumentError) { FlagCommand.new }
-          assert_raise(ArgumentError) { FlagCommand.new(nil) }
-          assert_raise(ArgumentError) { FlagCommand.new(nil, 4) }
-          assert_raise(ArgumentError) { FlagCommand.new(nil, '4', '19') }
           assert_nothing_raised { FlagCommand.new(nil, 4, 19) }
         end
 

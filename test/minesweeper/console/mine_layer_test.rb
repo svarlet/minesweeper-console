@@ -15,11 +15,9 @@ module Minesweeper
       end
 
       def test_initialize_requires_a_minefield_and_a_mine_factory
-        assert_raise(ArgumentError) { MineLayer.new }
-        assert_raise(ArgumentError) { MineLayer.new(nil, nil) }
-        assert_raise(ArgumentError) { MineLayer.new(Object.new, nil) }
-        assert_raise(ArgumentError) { MineLayer.new(@minefield, nil) }
-        assert_raise(ArgumentError) { MineLayer.new(@minefield, Object.new) }
+        assert_raise(ArgumentError) { MineLayer.new(Object.new, nil)}
+        assert_raise(ArgumentError) { MineLayer.new(nil, Object.new)}
+        assert_raise(ArgumentError) { MineLayer.new(nil, nil)}
         assert_nothing_raised { MineLayer.new(@minefield, MineCoordinatesFactory.new(Random.new)) }
       end
 

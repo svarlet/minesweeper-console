@@ -7,10 +7,6 @@ module Minesweeper
     module Parser
       class RevealCommandTest < Test::Unit::TestCase
         def test_initializes_requires_a_minefield_parameter_and_2_coordinates
-          assert_raise(ArgumentError) { RevealCommand.new }
-          assert_raise(ArgumentError) { RevealCommand.new(nil) }
-          assert_raise(ArgumentError) { RevealCommand.new(nil, 4) }
-          assert_raise(ArgumentError) { RevealCommand.new(nil, '4', '19') }
           assert_nothing_raised { RevealCommand.new(nil, 4, 19) }
         end
 
