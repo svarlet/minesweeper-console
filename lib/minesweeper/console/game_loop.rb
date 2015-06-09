@@ -1,5 +1,6 @@
 require 'readline'
 require 'minesweeper'
+require 'rainbow'
 require_relative 'prettyprinter/minefield_pretty_printer'
 require_relative 'prettyprinter/theme/default_theme'
 require_relative 'parser/command_parser'
@@ -29,12 +30,18 @@ module Minesweeper
           user_input = Readline.readline(PROMPT, true)
           @command_parser.parse(user_input).execute
           rescue Parser::UnsupportedCommandError, Parser::InvalidCommandParametersError => e
-            puts e.message
+            print_error(e)
           rescue Minesweeper::Explosives::ExplosionError => e
-            puts e.message
+            print_error(e)
             exit
           end
         end
+      end
+
+      def print_error(e)
+        puts '-' * 79 
+        puts Rainbow(e.message).yellow.bright
+        puts '-' * 79
       end
 
     end
