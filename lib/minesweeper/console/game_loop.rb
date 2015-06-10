@@ -26,24 +26,34 @@ module Minesweeper
         @mine_layer.lay(@row_count)
         loop do
           begin
-          puts @pretty_printer.print
-          user_input = Readline.readline(PROMPT, true)
-          @command_parser.parse(user_input).execute
+            puts @pretty_printer.print
+            user_input = Readline.readline(PROMPT, true)
+            @command_parser.parse(user_input).execute
+          rescue RangeError => e
+            print_error('Please type coordinates within the minefield range.')
           rescue Parser::UnsupportedCommandError, Parser::InvalidCommandParametersError => e
-            print_error(e)
+            print_error(e.message)
           rescue Minesweeper::Explosives::ExplosionError => e
-            print_error(e)
+            print_error(e.message)
+            exit
+          rescue MinefieldSolvedError
+            print_victory
             exit
           end
         end
       end
 
-      def print_error(e)
-        puts '-' * 79 
-        puts Rainbow(e.message).yellow.bright
-        puts '-' * 79
+      def print_error(message)
+        wrap_with_pretty_lines Rainbow(message).yellow.bright
       end
 
+      def wrap_with_pretty_lines(message)
+        puts '-' * 79, message, '-' * 79
+      end
+
+      def print_victory
+        wrap_with_pretty_lines Rainbow('Congratulations! You flagged all mines.').green.bright
+      end
     end
   end
 end
