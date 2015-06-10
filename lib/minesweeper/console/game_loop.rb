@@ -4,8 +4,6 @@ require 'rainbow'
 require_relative 'prettyprinter/minefield_pretty_printer'
 require_relative 'prettyprinter/theme/default_theme'
 require_relative 'parser/command_parser'
-require_relative 'mine_layer'
-require_relative 'mine_coordinates_factory'
 require_relative 'parser/unsupported_command_error'
 require_relative 'parser/invalid_command_parameters_error'
 
@@ -18,8 +16,8 @@ module Minesweeper
         @minefield = Minefield.new(@row_count)
         @pretty_printer = Console::PrettyPrinter::MinefieldPrettyPrinter.new(@minefield, Console::PrettyPrinter::Theme::DefaultTheme.new(Rainbow.new))
         @command_parser = Console::Parser::CommandParser.new(@minefield)
-        mine_generator = MineCoordinatesFactory.new(Random.new)
-        @mine_layer = MineLayer.new(@minefield, mine_generator)
+        mine_generator = Explosives::MineCoordinatesFactory.new(Random.new)
+        @mine_layer = Explosives::MineLayer.new(@minefield, mine_generator)
       end
 
       def start
