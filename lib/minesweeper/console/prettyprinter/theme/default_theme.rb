@@ -24,7 +24,11 @@ module Minesweeper
           end
 
           def colorize_cell_status(a_string)
-            @colorizer.wrap(a_string).yellow
+            if (a_string == 'F')
+              @colorizer.wrap(a_string).green
+            else
+              @colorizer.wrap(a_string).yellow
+            end
           end
         end
       end
