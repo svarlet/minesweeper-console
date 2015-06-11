@@ -27,5 +27,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "byebug"
   spec.add_development_dependency "rainbow", "~> 2.0.0"
 
-  spec.add_runtime_dependency "minesweeper", "~> 0.0.2"
+  spec.add_runtime_dependency "minesweeper", "~> 1.0.0"
 end
