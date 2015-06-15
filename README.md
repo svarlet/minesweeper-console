@@ -1,6 +1,9 @@
+[![Build Status](https://travis-ci.org/svarlet/minesweeper-console.svg?branch=master)](https://travis-ci.org/svarlet/minesweeper-console)
+[![Coverage Status](https://coveralls.io/repos/svarlet/minesweeper-console/badge.svg?branch=master)](https://coveralls.io/r/svarlet/minesweeper-console?branch=master)
+
 # Minesweeper::Console
 
-TODO: Write a gem description
+A command line frontend to my minesweeper game. It is based on my [minesweeper-core gem](https://github.com/svarlet/minesweeper-core).
 
 ## Installation
 
@@ -20,7 +23,14 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+The provided executable takes one integer parameter to set the number of rows and columns.
+Therefore the minefield will always be a square. The number of mines randomly placed within the minefield is also equal to N.
+
+```
+# minesweeper N
+```
+
+Have fun !
 
 ## Contributing
 
