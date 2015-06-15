@@ -1,5 +1,5 @@
 require 'readline'
-require 'minesweeper'
+require 'minesweeper/core'
 require 'rainbow'
 require_relative 'prettyprinter/minefield_pretty_printer'
 require_relative 'prettyprinter/theme/default_theme'

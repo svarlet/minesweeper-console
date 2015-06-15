@@ -1,4 +1,4 @@
-require 'minesweeper'
+require 'minesweeper/core'
 require 'rainbow'
 require_relative 'header_printer'
 require_relative 'row_printer'
