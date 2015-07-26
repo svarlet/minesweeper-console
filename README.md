@@ -29,6 +29,7 @@ Therefore the minefield will always be a square. The number of mines randomly pl
 ```
 # minesweeper N
 ```
+![Screenshot](https://dl.dropboxusercontent.com/u/4800046/minesweeper/screenshot.png)
 
 Have fun !
 
