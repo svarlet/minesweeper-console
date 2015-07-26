@@ -13,11 +13,11 @@ module Minesweeper
       PROMPT = "(R)eveal, (F)lag, (U)nflag <x> <y>\n>"
       def initialize(size)
         @row_count = size
-        @minefield = Minefield.new(@row_count)
+        @minefield = Core::Minefield.new(@row_count)
         @pretty_printer = Console::PrettyPrinter::MinefieldPrettyPrinter.new(@minefield, Console::PrettyPrinter::Theme::DefaultTheme.new(Rainbow.new))
         @command_parser = Console::Parser::CommandParser.new(@minefield)
-        mine_generator = Explosives::MineCoordinatesFactory.new(Random.new)
-        @mine_layer = Explosives::MineLayer.new(@minefield, mine_generator)
+        mine_generator = Core::Explosives::MineCoordinatesFactory.new(Random.new)
+        @mine_layer = Core::Explosives::MineLayer.new(@minefield, mine_generator)
       end
 
       def start
